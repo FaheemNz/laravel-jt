@@ -1,0 +1,36 @@
+Client ID: 3
+Client Secret: wTODoImgvm6AfP4TPnLNK1EEBg4iNS6Yu8kJqzXW
+
+# Registeration
+  - first name and last name should be alphabets  =Done
+  - password should be 8 characters               =Done
+  - add country                                   =DONE
+  - Phone Duplication                             =Done
+
+# Profile Update
+  - If email is updated, user has to again verify his email
+
+# Order Creation
+  - Image creation (5 Max)
+  - Anything allowed in Name
+
+# Listing Orders
+  - If no image, show a default image
+
+# Order Details
+  - Rating
+  
+# Trip Creation
+  
+# Offer Creation 
+  - Trip's From City should be same as order's from city                                    =Done
+  - Trip's To City should be same as Order's to city                                        =Done
+  - Trip's arrival date should be less than Order's needed by date                          =Done
+  - Offer's Expiry date should be less than Trip's Arrival date                             =Done
+  - Add open or closed status                                                               =Done
+  - If counter offer, status of the offer is closed. If no, status of the offer is open.    =Done
+
+# Offer Update
+  - There should be no counter offer placed
+  - Can't be updated if offer is rejected from the customer
+  - Can't be updated if payment is in process

@@ -1,0 +1,22 @@
+[
+    {"Category":"Home & Garden","Tariff":"20"},
+    {"Category":"Luggage & Bags","Tariff":"20"},
+    {"Category":"Animals & Pet Supplies","Tariff":"20"},
+    {"Category":"Office Supplies","Tariff":"20"},
+    {"Category":"Business & Industrial","Tariff":"35"},
+    {"Category":"Electronics","Tariff":"20"},
+    {"Category":"Laptops","Tariff":"3"},
+    {"Category":"Cellphones","Tariff":"20"},
+    {"Category":"Sporting Goods","Tariff":"20"},
+    {"Category":"Furniture","Tariff":"20"},
+    {"Category":"Religious & Ceremonial","Tariff":"20"},
+    {"Category":"Cameras & Optics","Tariff":"11"},
+    {"Category":"Baby & Toddler","Tariff":"20"},
+    {"Category":"Apparel & Accessories","Tariff":"20"},
+    {"Category":"Toys & Games","Tariff":"20"},
+    {"Category":"Health & Beauty","Tariff":"20"},
+    {"Category":"Hardware","Tariff":"11"},
+    {"Category":"Software","Tariff":"11"},
+    {"Category":"Food, Beverages & Tobacco","Tariff":"20"},
+    {"Category":"Vehicles & Parts","Tariff":"35"}
+]

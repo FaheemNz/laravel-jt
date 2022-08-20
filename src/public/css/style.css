@@ -1,0 +1,130 @@
+.btn-dark {
+    background: #000;
+    color: #fff;
+}
+
+.page-header:before {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.login-page .form-control::-webkit-input-placeholder {
+    color: black !important;
+    opacity: 1;
+}
+
+/* WebKit, Blink, Edge */
+
+.login-page .form-control:-moz-placeholder {
+    color: black;
+    opacity: 1;
+}
+
+/* Mozilla Firefox 4 to 18 */
+
+.login-page .form-control::-moz-placeholder {
+    color: black;
+    opacity: 1;
+}
+
+/* Mozilla Firefox 19+ */
+
+.login-page .form-control:-ms-input-placeholder {
+    color: black;
+    opacity: 1;
+}
+
+/* Internet Explorer 10-11 */
+
+.login-page .form-control::-ms-input-placeholder {
+    color: black;
+    opacity: 1;
+}
+
+.login-page .card-login.card-plain .form-control {
+    color: #000;
+}
+
+.btn-dark:hover {
+    color: #fff;
+    background: #000;
+}
+
+.panel-header {
+    /*background-image: url(../images/cover_image.png);*/
+    background: #ffff00;
+    background: linear-gradient(90deg,#ffc107 0,#ffff00 60%,#ffc107);
+}
+
+.login-page .card-login.card-plain .form-group.no-border .form-control,
+.login-page .card-login.card-plain .form-group.no-border .form-control:active,
+.login-page .card-login.card-plain .form-group.no-border .form-control:focus,
+.login-page .card-login.card-plain .input-group.no-border .form-control:active,
+.login-page .card-login.card-plain .input-group.no-border .form-control:focus {
+    color: #000 !important;
+}
+
+.off-canvas-sidebar .nav li:focus:not(.active) > a i,
+.off-canvas-sidebar .nav li:hover:not(.active) > a i,
+.sidebar .nav li:focus:not(.active) > a i,
+.sidebar .nav li:hover:not(.active) > a i {
+    color: #000;
+}
+
+.off-canvas-sidebar .nav li > a,
+.sidebar .nav li > a,
+.off-canvas-sidebar .nav li > a:hover,
+.sidebar .nav li > a:hover {
+    color: #000;
+}
+
+.sidebar .nav li > a > i,
+sidebar .nav li > a > i:hover {
+    color: #000;
+}
+
+.off-canvas-sidebar .logo .simple-text,
+.sidebar .logo .simple-text {
+    color: #000;
+}
+
+.navbar a:not(.btn):not(.dropdown-item) {
+    color: #000;
+}
+
+.navbar .navbar-nav .nav-item.active .nav-link:not(.btn),
+.navbar .navbar-nav .nav-item .nav-link:not(.btn):active,
+.navbar .navbar-nav .nav-item .nav-link:not(.btn):focus,
+.navbar .navbar-nav .nav-item .nav-link:not(.btn):hover {
+    color: #000;
+}
+
+.off-canvas-sidebar .nav li.active > a:not([data-toggle="collapse"]),
+.sidebar .nav li.active > a:not([data-toggle="collapse"]) {
+    background-color: #000;
+}
+
+table.table-bordered.dataTable th {
+    white-space: nowrap;
+    font-weight: 400;
+}
+
+.login-page .link {
+    color: #000 !important;
+    font-size: 12px;
+}
+
+.login-page .card-login.card-plain .form-group.no-border .form-control,
+.login-page .card-login.card-plain .input-group.no-border .form-control {
+    color: #000;
+}
+
+.page-header .page-header-image-custom {
+    background-size: cover;
+    background-position: center;
+}
+
+.vendor-signup .form-group .form-control,
+.input-group .form-control {
+    background-color: hsla(0, 0%, 100%, 0.1);
+    border: none;
+}

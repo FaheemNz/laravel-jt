@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style id="antiClickjack">
+            body {
+                display: none !important;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="PGWHPCCARDContainer2"></div>
+    </body>
+
+    <!-- INCLUDE SESSION.JS JAVASCRIPT LIBRARY -->
+    <script type="text/javascript" src="https://test-bankalfalah.gateway.mastercard.com/form/version/54/merchant/NIFT/session.js"></script>
+
+    <!-- PGW HPC CARD PLUGIN -->
+    <script type="text/javascript" src="https://uat-merchants.niftepay.pk/HPS/PGWHPCPlugin.js"></script>
+
+    <!-- Cyrpto-JS -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+
+    <!-- INITIALIZE PLUGIN -->
+    <script type="text/javascript">
+
+        const SALT = 'dUVgtO0APlc=';
+
+        function changeDateFormat() {
+            Date.prototype.yyyymmdd = function () {
+                function pad2(n) {
+                    return (n < 10 ? "0" : "") + n;
+                }
+
+                return [this.getFullYear(),
+                pad2(this.getMonth() + 1),
+                pad2(this.getDate()),
+                pad2(this.getHours()),
+                pad2(this.getMinutes()),
+                pad2(this.getSeconds())].join("");
+            };
+        }
+
+        changeDateFormat();
+
+        let date = new Date();
+        let expDate = new Date(date.getTime() + 7 * 24 * 60 * 60 * 1000).yyyymmdd();
+        let txnRefNo = ["T", date.yyyymmdd()].join("");
+
+        //Update transaction parameters
+        PGWHPCTransactionParameters.__00amt__ = "100000"; //pp_Amount
+        PGWHPCTransactionParameters.__01brn__ = "billref";//new Date().getTime().toString(); //pp_BillReference
+        PGWHPCTransactionParameters.__02des__ = "Headphones"; //pp_Description
+        PGWHPCTransactionParameters.__03lan__ = "EN";  //pp_Language
+        PGWHPCTransactionParameters.__04mid__ = "mesum3"; //pp_MerchantID
+        PGWHPCTransactionParameters.__05pwd__ = "mesum3"; //pp_Password
+        PGWHPCTransactionParameters.__06url__ = "https://payaxis-fe-stag.niftepay.pk:444/MerchantSimulatorPGW/HttpRequestDemoServer/Index"; //pp_ReturnURL
+		PGWHPCTransactionParameters.__07smid__= ""; //pp_SubMerchantID
+        PGWHPCTransactionParameters.__08seh__ = SALT; //pp_SecureHash
+        PGWHPCTransactionParameters.__09cur__ = "PKR"; //pp_TxnCurrency
+        PGWHPCTransactionParameters.__10tdt__ = date.yyyymmdd(); //pp_TxnDateTime
+        PGWHPCTransactionParameters.__11edt__ = expDate; //pp_TxnExpiryDateTime
+        PGWHPCTransactionParameters.__12trn__ = txnRefNo; //pp_TxnRefNo
+        PGWHPCTransactionParameters.__13ver__ = "1.1"; //pp_Version
+        //PGWHPCTransactionParameters.__14fbu__ = "";
+
+        delete PGWHPCTransactionParameters.__08seh__; //pp_SecureHash
+
+        var keys = Object.keys(PGWHPCTransactionParameters).sort(function (a, b) {
+            if (a.toLowerCase() < b.toLowerCase()) return -1;
+            if (a.toLowerCase() > b.toLowerCase()) return 1;
+            return 0;
+        });
+        var message = "";
+        keys.forEach(key => { message += PGWHPCTransactionParameters[key] ? [PGWHPCTransactionParameters[key], '&'].join("") : "" })
+        message = [SALT, "&", message.slice(0, -1)].join("");
+
+        // calculate secureHash
+        var hash = CryptoJS.HmacSHA256(message, SALT);
+        PGWHPCTransactionParameters.__08seh__ = hash.toString().toUpperCase();
+
+        //Initialize
+        document.addEventListener("DOMContentLoaded", function (event) {
+            PGWHPCCard.initialize("PGWHPCCARDContainer2"); //Render Card Fields
+        });
+
+        //Success Code Mappings
+        PGWHPCSuccessMap.onValidSecurityCode = function (msg) {
+            console.log('PGWHPCSuccessMap.onValidSecurityCode');
+            //alert('Valid Security Code')
+            console.log(msg);
+            //Your code to handle this success message
+        }
+
+        PGWHPCSuccessMap.onValidMasterCard = function (msg) {
+            console.log('PGWHPCSuccessMap.onValidMasterCard');
+            //alert('Valid MasterCard')
+            console.log(msg);
+            //Your code to handle this success message
+        }
+
+        PGWHPCSuccessMap.onValidSessionResponse = function (msg) {
+            console.log('PGWHPCSuccessMap.onValidSessionResponse');
+            //alert('Valid Session Response')
+            console.log(msg);
+            //Your code to handle this success message
+        }
+
+        PGWHPCSuccessMap.onPurchaseProcessedViaCard = function (msg) {
+            console.log('PGWHPCSuccessMap.onPurchaseProcessedViaCard');
+            //alert("purchase done - Card");
+            console.log("purchase done - Card");
+            console.log(msg);
+            //Your code to handle this success message
+        }
+
+        //Error Code Mappings
+        PGWHPCErrorMap.onInvalidTransactionDetails = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidTransactionDetails');
+            //alert("Invalid Transaction Details");
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onInvalidContainerArea = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidContainerArea');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onInvalidCardNumber = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidCardNumber');
+            //alert("Invalid Card Number");
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onInvalidExpiryYear = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidExpiryYear');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onInvalidExpiryMonth = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidExpiryMonth');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onInvalidSecurityCode = function (msg) {
+            console.log('PGWHPCErrorMap.onInvalidSecurityCode');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        // THIS IS RUNNING RIGHT NOW.... FAHEEM-----
+
+        PGWHPCErrorMap.onRequestTimedOut = function (msg) {
+            console.log('JAY-TEE'+'PGWHPCErrorMap.onRequestTimedOut');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onSystemError = function (msg) {
+            console.log('PGWHPCErrorMap.onSystemError');
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+        PGWHPCErrorMap.onGenericError = function (msg) {
+            console.log('PGWHPCErrorMap.onGenericError');
+            alert('Error')
+            console.log(msg);
+            //Your code to handle this error
+        }
+
+    </script>
+</html>
